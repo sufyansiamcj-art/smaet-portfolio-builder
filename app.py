@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, send_file
 from github_service import get_github_repos
 import io
+import os
 
 app = Flask(__name__)
 
@@ -37,3 +38,11 @@ def export_portfolio():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+
+
+
+if __name__ == '__main__':
+    # جلب المنفذ من البيئة المحيطة أو استخدام 5000 كافتراضي
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
