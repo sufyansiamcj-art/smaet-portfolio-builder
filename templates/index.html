@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Portfolio Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { font-family: sans-serif; }</style>
+</head>
+<body class="bg-gray-900 text-gray-100 p-10">
+    <div class="max-w-5xl mx-auto">
+        <h1 class="text-3xl font-bold text-blue-400 mb-8 text-center">لوحة تحكم المحفظة الذكية</h1>
+        
+        <form method="POST" class="flex gap-4 mb-12 max-w-lg mx-auto">
+            <input type="text" name="github_username" placeholder="GitHub Username" class="flex-1 p-3 rounded bg-gray-800 border border-gray-700">
+            <button type="submit" class="bg-blue-600 px-6 py-3 rounded font-bold">جلب البيانات</button>
+        </form>
+
+        {% if projects %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for p in projects %}
+            <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
+                <h3 class="font-bold text-white">{{ p.name }}</h3>
+                <p class="text-sm text-gray-400">{{ p.description }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-12 text-center border-t border-gray-800 pt-8">
+            <form action="/export" method="POST">
+                <input type="hidden" name="username" value="{{ username }}">
+                <button type="submit" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-10 rounded-full transition">
+                    تحميل ملف HTML الجاهز 📥
+                </button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

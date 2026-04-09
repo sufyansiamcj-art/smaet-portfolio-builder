@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>معرض أعمالي - {{ username }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+    <header class="py-20 bg-white border-b border-slate-200">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-5xl font-black text-slate-900 mb-4">{{ username }}</h1>
+            <p class="text-xl text-slate-500">مطور برمجيات | مبرمج Python</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16">
+        <h2 class="text-2xl font-bold mb-10 text-slate-800 border-r-4 border-blue-600 pr-4">المشاريع التقنية</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for p in projects %}
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">{{ p.language }}</span>
+                <h3 class="text-xl font-bold mt-2 mb-3">{{ p.name }}</h3>
+                <p class="text-slate-500 text-sm leading-relaxed mb-6">{{ p.description }}</p>
+                <a href="{{ p.url }}" class="text-slate-900 font-bold text-sm border-b-2 border-blue-500 pb-1">عرض المستودع</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="py-10 text-center text-slate-400 text-sm">
+        تم توليد هذه الصفحة بواسطة Smart Portfolio Builder
+    </footer>
+</body>
+</html>
